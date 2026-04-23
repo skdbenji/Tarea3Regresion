@@ -52,6 +52,10 @@ def prob_tarjetas_mayor_igual(x, tarjetas totales):
 def prob_cc_gana():
            prob_gana = sum(1 for i in range(len(cc_todos)) if cc_todos[i] > pal_todos[i]) / len(cc_todos)
            print(f"\nP(colo-colo gana el partido): {prob_gna:.1%}")
+
+def prob_tiros_arco_mayo_igual(x, tiros_totales):
+           prob_tiros = sum(1, for j in tiros_totales if j >= x) / len(tiros_totales)
+           print(f"P(tiros aal arco >= {x}): {prob_tiros:.1%}")
            
 
 prob_menos_de(4)
