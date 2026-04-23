@@ -40,4 +40,10 @@ def prob_menos_de(x):
     print(f"  Palestina        : {prob_pal:.1%}")
     print(f"  Goles totales    : {prob_tot:.1%}")
 
+def prob_tarjetas_mayor_igual(x, tarjetas totales):
+           prob_tarj = sum(1 for t in tarjetas_totales if t >= x) / len(tarjetas_totales)
+           print(f"tarjetas amarillas >= {x}: {prob_tarj}:.1%")
+           
+
 prob_menos_de(4)
+
