@@ -1,13 +1,14 @@
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import LogisticRegression
 from datos import goles_195x, goles_196x, goles_197x, goles_198x, goles_199x, goles_200x, goles_201x, goles_202x, tarjetas_amarillas, tiros_arco
 #1.- prediccion 
 #Juntar todos los datos
 decadas = [goles_195x, goles_196x, goles_197x, goles_198x,
            goles_199x, goles_200x, goles_201x, goles_202x]
-tarjetas_amarillas = tarjetas_totales
-tiros_arco = tiros_totales
+tarjetas_totales = tarjetas_amarillas 
+tiros_totales = tiros_arco
 
 cc_todos  = [p[0] for d in decadas for p in d]
 pal_todos = [p[1] for d in decadas for p in d]
@@ -27,6 +28,7 @@ X_train, X_test, Ygana_train, Ygana_test = train_test_split(X, Y_gana, test_size
 modelo_cc  = LinearRegression()
 modelo_pal = LinearRegression()
 modelo_gana = LogisticRegression()
+
 modelo_cc.fit(X_train, Ycc_train)
 modelo_pal.fit(X_train, Ypal_train)
 modelo_gana.fit(X_train, Ygana_train)
@@ -56,12 +58,12 @@ def prob_cc_gana():
            print(f"\nP(colo-colo gana el partido): {prob_gna:.1%}")
 
 def prob_tiros_arco_mayor_igual(x, tiros_totales):
-           prob_tiros = sum(1, for j in tiros_totales if j >= x) / len(tiros_totales)
+           prob_tiros = sum(1 for j in tiros_totales if j >= x) / len(tiros_totales)
            print(f"P(tiros aal arco >= {x}): {prob_tiros:.1%}")
            
 
 prob_menos_de(4)
-prob_tarjetas_mayor_igual(6, tarjetas totales)
+prob_tarjetas_mayor_igual(6, tarjetas_totales)
 prob_cc_gana()
 prob_tiros_arco_mayor_igual(8, tiros_totales)
 
