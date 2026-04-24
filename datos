@@ -173,3 +173,6 @@ goles_202x =[
     [1, 20], 
     [2, 0]
 ]
+
+tarjetas_amarillas=5
+tiros_arco=9
