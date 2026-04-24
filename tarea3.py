@@ -1,11 +1,13 @@
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
-from datos import goles_195x, goles_196x, goles_197x, goles_198x, goles_199x, goles_200x, goles_201x, goles_202x
+from datos import goles_195x, goles_196x, goles_197x, goles_198x, goles_199x, goles_200x, goles_201x, goles_202x, tarjetas_amarillas, tiros_arco
 #1.- prediccion 
 #Juntar todos los datos
 decadas = [goles_195x, goles_196x, goles_197x, goles_198x,
            goles_199x, goles_200x, goles_201x, goles_202x]
+tarjetas_amarillas = tarjetas_totales
+tiros_arco = tiros_totales
 
 cc_todos  = [p[0] for d in decadas for p in d]
 pal_todos = [p[1] for d in decadas for p in d]
@@ -45,7 +47,7 @@ def prob_menos_de(x):
     print(f"  Palestina        : {prob_pal:.1%}")
     print(f"  Goles totales    : {prob_tot:.1%}")
 
-def prob_tarjetas_mayor_igual(x, tarjetas totales):
+def prob_tarjetas_mayor_igual(x, tarjetas_totales):
            prob_tarj = sum(1 for t in tarjetas_totales if t >= x) / len(tarjetas_totales)
            print(f"tarjetas amarillas >= {x}: {prob_tarj}:.1%")
 
