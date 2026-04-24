@@ -174,5 +174,5 @@ goles_202x =[
     [2, 0]
 ]
 
-tarjetas_amarillas=5
-tiros_arco=9
+tarjetas_amarillas=[5]
+tiros_arco=[9]
