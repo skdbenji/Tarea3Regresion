@@ -1,13 +1,16 @@
+
+
+#16 partidos
 goles_195x =[
     [2, 1], 
-    [0, 3], 
-    [3, 2], 
+    [3, 0], 
+    [2, 3], 
+    [0, 2], 
     [2, 0], 
-    [2, 0], 
-    [3, 2],
+    [2, 2],
     [2, 0], 
     [6, 2], 
-    [1, 3],
+    [3, 1],
     [4, 3], 
     [4, 4], 
     [2, 1], 
@@ -16,90 +19,94 @@ goles_195x =[
     [2, 1], 
     [1, 0]
 ]
-
+ #21 partidos
 goles_196x =[
     [3, 1], 
-    [2, 1], 
+    [1, 2], 
     [7, 5], 
     [3, 2], 
     [3, 1], 
     [6, 0],
-    [1, 4], 
+    [4, 1], 
     [5, 2], 
     [5, 0],
-    [3, 2], 
+    [2, 3], 
     [1, 1], 
     [1, 4], 
-    [3, 1], 
+    [1, 3], 
     [2, 1],
-    [1, 2], 
-    [3, 2],
+    [2, 1], 
+    [2, 3],
     [4, 2], 
-    [3, 1], 
+    [4, 2], 
+    [1, 3],
     [3, 2], 
     [1, 0]
 ]
 
+#18 partidos
 goles_197x = [
     [2, 0],
-    [1, 0],
     [0, 1],
+    [1, 0],
     [0, 0],
     [3, 2],
     [1, 1],
     [1, 1],
     [5, 3],
     [6, 4],
-    [1, 2],
+    [2, 1],
     [1, 1],
     [1, 1],
     [1, 0],
     [1, 1],
-    [2, 0],
+    [0, 2],
     [1, 3],
     [0, 0],
     [1, 0]
 ]
 
+#19 partidos
 goles_198x = [
     [4, 0],
-    [2, 1],
     [1, 2],
+    [2, 1],
     [3, 1],
     [2, 3],
     [0, 0],
-    [0, 3],
+    [3, 0],
     [3, 2],
     [3, 1],
     [2, 2],
     [1, 1],
     [1, 1],
     [1, 3],
-    [1, 4],
+    [4, 1],
     [2, 0],
-    [1, 5],
+    [5, 1],
     [1, 1],
     [1, 2],
-    [0, 2]
+    [2, 0]
 ]
 
+#22 partidos
 goles_199x = [
     [1, 1],
     [0, 0],
-    [0, 1],
+    [1, 0],
     [1, 1],
-    [1, 3],
+    [3, 1],
     [6, 0],
     [2, 0],
-    [0, 2],
-    [0, 2],
+    [2, 0],
+    [2, 0],
     [2, 2],
     [1, 1],
     [1, 2],
     [1, 1],
     [4, 2],
     [2, 0],
-    [0, 1],
+    [1, 0],
     [0, 0],
     [2, 2],
     [1, 0],
@@ -108,71 +115,137 @@ goles_199x = [
     [1, 1]
 ]
 
+#22 partidos
 goles_200x = [
-    [2, 4],
+    [4, 2],
     [0, 2],
     [2, 0],
-    [0, 2],
+    [2, 0],
     [1, 1],
     [0, 0],
-    [0, 2],
+    [2, 0],
     [2, 1],
     [2, 1],
-    [2, 3],
-    [1, 0],
+    [3, 2],
+    [0, 1],
     [4, 1],
-    [1, 4],
+    [4, 1],
     [1, 3],
     [1, 0],
-    [0, 1],
     [1, 0],
+    [0, 1],
     [0, 0],
     [1, 1],
     [3, 1],
-    [1, 0],
+    [0, 1],
     [1, 2]
 ]
-
+#20 partidos
 goles_201x = [
     [3, 0],
-    [1, 2],
-    [0, 3],
+    [2, 1],
+    [3, 0],
     [3, 1],
     [0, 1],
-    [0, 3],
-    [1, 2],
+    [3, 0],
+    [2, 1],
     [0, 1],
-    [0, 3],
-    [1, 2],
-    [0, 1],
-    [1, 2],
-    [0, 1],
-    [1, 2],
-    [1, 3],
+    [2, 1],
+    [3, 1],
     [1, 1],
-    [2, 0],
-    [0, 0],
+    [0, 2],
     [1, 3],
-    [1, 2],
-    [0, 0],
-    [1, 1],
     [2, 1],
     [0, 0],
+    [1, 1],
+    [1, 2],
+    [0, 0], 
     [2, 1],
     [2, 2]
 ]
 
+#9 partidos
 goles_202x =[
     [3, 0], 
-    [3, 1], 
+    [1, 3], 
     [1, 2], 
-    [1, 2], 
-    [0, 5], 
+    [2, 1], 
+    [5, 0], 
     [1, 0],
     [3, 1], 
-    [1, 20], 
+    [0, 1], 
     [2, 0]
 ]
 
-tarjetas_amarillas=[5]
+tarjetas_cc=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, #16
+                    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, #21
+                    0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0, #18
+                    0,0,1,1,1,0,0,1,0,1,0,0,3,2,1,1,0,0,0, #19
+                    3,4,1,1,4,0,1,1,2,2,0,2,2,3,0,0,3,1,0,1,2,3 , #22
+                    3,2,0,0,3,1,0,0,0,0,2,2,0,3,2,4,6,1,2,1,1,0 , # 22
+                    3,2,2,1,2,0,3,1,2,3,2,3,3,2,2,4,4,3,1,2 , #20
+                    3, 5 , 2 , 3 , 3 , 4 ,0, 2 , 0 #9
+                    ]
+
+tarjetas_pal= [ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, # 16
+              0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 , #21
+              0,0,0,0,0,0,0,0,0,0,0,0, 0, 0 ,0,0,0,0 , #18 
+              0,0,2,1,4,3,0,3,1,2,0,0,2,3,1,2,1,1,2, #19 
+              4,2,1,3,4,6,4,2,5,3,5,4,7,4,0,3,1,3,0,0,4,2 , #22
+              3,2,0,0,1,0,1,0,0,0,0,1,3,3,4,3,5,5,2,3,2,2 , #22
+              1,2,1,2,3,3,5,2,3,2,2,1,3,2,3,4,3,2,1,1 , #20
+              1 , 2 , 3 , 3 , 3 , 3 , 0 , 1 , 0 #9
+              ]
+
 tiros_arco=[9]
+
+#En el partido de 6-0 de 1962 expulsaron valdes del colo
+
+#En el partido de 2-2 los dos equipos tuvieron un jugador expulsado, fueron los dos al mismo tiempo.
+
+#En el partido de 1-3 de 1966 los dos equipos tuvieron un jugador expulsado.
+
+#En el partido de 2-3 de 196 los dos equipos tuvieron un jugador expulsado.
+
+#En el partido 1-0 de 197 se espulxo un jugador de palestino.
+
+#En el partido de 5-3 de 1974 se expulsaron 4 jugadores de palestino y 1 de colo colo.
+
+#En el partido de 6-4 de 1975 se expulsaron 1 jugador de palestini.
+
+#En el partido de 1-1 de 1976 se expulso un jugador de colo colo.
+
+#En el partido 2-0 de 1978 colo colo tuvo un jugador expulsado.
+
+#En el partido de 4-0 de 1980 se expulsaron 1 jugador de palestino.
+
+#En el partido de 2-3 de 1982 se expulso 1 de colo colo y 4 de palestino.
+
+#En el partido de 1-0 de 199 un jugador de palestino fue expulsado.
+
+#En el partido de 3-1 de 199 palestino tuvo un jugador expulsado.
+
+#En el partido de 1-1 de 199 se expulsaron 2 de colo colo.
+
+#En el partidod de 2-0 de 199 se expulsaron un jugador de palestino.
+
+#En el partido de 2-2 de 199 se expulso un jugador de palestino.
+
+#En el partido de 1-1 de 199 se expulso 1 jugador de colo colo.
+
+#En el partido de 1-3 de 199 se expulso 1 jugador de cada equipo.
+
+#En el partido de 1-1 de 199 se expulso un jugador de palestino.
+
+#En el partido de 0-0 de 200 se expulso un jugador de colo colo.
+
+#En el partido de 2-1 de 200 se expulso un jugador de palestino.
+
+#En el partido de 4-1 de 200 se espulso un jugador de palestino.
+
+#En el partido de 1-1 de 200 se expulso 2 jugadores de palestino.
+
+
+#En el partido de 2-1 de 201 se expulso de un jugador de palestino.
+
+#En el partido de 2-2 de 201 se expulso un jugador de colo colo
