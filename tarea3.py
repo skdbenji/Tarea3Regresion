@@ -197,3 +197,59 @@ if pred_gana[0] == 1:
 else:
     print("Prediccion: No gana Colo-Colo")
 
+
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+datos = pd.DataFrame({
+    "Tarjetas_CC": tarjetas_cc,
+    "Tarjetas_PAL": tarjetas_pal,
+    "Exp_CC": expulsados_cc,
+    "Exp_PAL": expulsados_pal,
+    "Local_CC": local_cc,
+    "Año": anios,
+    "Dif_Goles": dif_goles
+})
+
+corr = datos.corr()
+
+sns.heatmap(corr, annot=True, cmap="coolwarm")
+
+plt.title("Mapa de calor de correlaciones")
+
+plt.show()
+
+
+
+plt.boxplot([cc_todos, pal_todos],
+            labels=["Colo-Colo", "Palestino"])
+
+plt.title("Distribución de goles")
+
+plt.ylabel("Goles")
+
+plt.show()
+
+
+
+
+plt.scatter(tarjetas_cc, dif_goles)
+
+plt.title("Tarjetas vs diferencia de goles")
+
+plt.xlabel("Tarjetas Colo-Colo")
+plt.ylabel("Diferencia goles")
+
+plt.show()
+
+
+
+plt.hist(dif_goles, bins=10)
+
+plt.title("Distribución diferencia de goles")
+
+plt.xlabel("Diferencia")
+plt.ylabel("Frecuencia")
+
+plt.show()
