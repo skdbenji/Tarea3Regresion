@@ -271,7 +271,7 @@ plt.xlabel("Año del Partido")
 plt.ylabel("Diferencia de Goles (Colo-Colo - Palestina)")
 plt.show()
 
-
+#grafico que compara si al colo le va mejor de local o de visita
 sns.boxplot(x=local_cc, y=dif_goles, palette="set2")
 plt.xtricks(ticks=[0, 1], labels=["visita", "Local"])
 plt.axhilne(0, color='gray', linestyle='--')
