@@ -1,8 +1,10 @@
+#IMPORTACION DE LIBRERIAS
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.linear_model import LogisticRegression
 
+#IMPORTACION DE DATOS DESDE EL ARCHIVO "datos.py", CONTIENE LOS DATOS HISTORICOS DE LOS PARTIDOS
 from datos import (
     goles_195x, goles_196x, goles_197x, goles_198x,
     goles_199x, goles_200x, goles_201x, goles_202x,
@@ -12,33 +14,35 @@ from datos import (
     anios
 )
 
-# 1.- Juntar todos los partidos
+# JUNTAR TODOS LOS PARTIDOS
 
 decadas = [
     goles_195x, goles_196x, goles_197x, goles_198x,
     goles_199x, goles_200x, goles_201x, goles_202x
 ]
-
+# EXTRAER GOLES DE COLO-COLO
 cc_todos  = [p[0] for d in decadas for p in d]
+#EXTRAER GOLES DE PALESTINO
 pal_todos = [p[1] for d in decadas for p in d]
 
-# VARIABLES OBJETIVO
-
+# VARIABLES OBJETIVO Y
+# GOLES DE COLO-COLO
 Y_cc = np.array(cc_todos)
+# GOLES DE PALESTINO
 Y_pal = np.array(pal_todos)
 
-# Diferencia de goles
+# DIFERENCIA DE GOLES
 
 dif_goles = np.array(cc_todos) - np.array(pal_todos)
 
-# Victoria de Colo-Colo
+# VARIABLE BINARIA DE BICTORIA
 
 Y_gana = np.array([
     1 if dif_goles[i] > 0 else 0
     for i in range(len(dif_goles))
 ])
 
-# MATRIZ DE VARIABLES
+# MATRIZ DE VARIABLES X
 
 X = np.array([
     [
@@ -52,7 +56,7 @@ X = np.array([
     for i in range(len(cc_todos))
 ])
 
-# VERIFICACION
+# VERIFICACION DE LOS DATOS
 
 print("\n--- VERIFICACION DE DATOS ---")
 
@@ -84,21 +88,21 @@ print("Filas en X:", len(X))
     random_state=42
 )
 
-# MODELOS
+# CREACION DE MODELOS
 
 modelo_cc = LinearRegression()
 modelo_pal = LinearRegression()
 modelo_dif = LinearRegression()
 modelo_gana = LogisticRegression(max_iter=1000)
 
-# ENTRENAMIENTO
+# ENTRENAMIENTO DE MODELOS
 
 modelo_cc.fit(X_train, Ycc_train)
 modelo_pal.fit(X_train, Ypal_train)
 modelo_dif.fit(X_train, Ydif_train)
 modelo_gana.fit(X_train, Ygana_train)
 
-# RESULTADOS
+# RESULTADOS DEL MODELO
 
 print("\n--- RESULTADOS DEL MODELO ---")
 
@@ -107,7 +111,7 @@ print(f"R² Palestino : {modelo_pal.score(X_test, Ypal_test):.3f}")
 print(f"R² Diferencia goles : {modelo_dif.score(X_test, Ydif_test):.3f}")
 print(f"Precision victorias CC : {modelo_gana.score(X_test, Ygana_test):.3f}")
 
-# FUNCIONES DE PROBABILIDAD
+# FUNCIONES DE PROBABILIDAD DE MENOS GOLES
 
 def prob_menos_de(x):
 
@@ -122,7 +126,7 @@ def prob_menos_de(x):
 
     print(f"\nP(goles totales < {x}): {prob:.1%}")
 
-
+#FUNCION DE PROBABILIDAD DE TARJETAS
 def prob_tarjetas_mayor_igual(x):
 
     tarjetas_totales = [
@@ -136,7 +140,7 @@ def prob_tarjetas_mayor_igual(x):
 
     print(f"Tarjetas amarillas >= {x}: {prob:.1%}")
 
-
+#FUNCION DE PROBABILIDAD DE EXPULSADOS
 def prob_expulsados_mayor_igual(x):
 
     expulsados_totales = [
@@ -150,7 +154,7 @@ def prob_expulsados_mayor_igual(x):
 
     print(f"Expulsados >= {x}: {prob:.1%}")
 
-
+# FUNCION DE PROBABILIDAD DE VICTORIA
 def prob_cc_gana():
 
     prob = sum(
@@ -182,26 +186,27 @@ nuevo_partido = [[
     1,   # 1 = Colo-Colo local
     2024
 ]]
-
+# PREDICCIONES
 pred_cc = modelo_cc.predict(nuevo_partido)
 pred_pal = modelo_pal.predict(nuevo_partido)
 pred_dif = modelo_dif.predict(nuevo_partido)
 pred_gana = modelo_gana.predict(nuevo_partido)
-
+# RESULTADOS
 print(f"Goles esperados Colo-Colo : {pred_cc[0]:.2f}")
 print(f"Goles esperados Palestino : {pred_pal[0]:.2f}")
 print(f"Diferencia esperada       : {pred_dif[0]:.2f}")
-
+# RESULTADOS BINARIOS
 if pred_gana[0] == 1:
     print("Prediccion: Gana Colo-Colo")
 else:
     print("Prediccion: No gana Colo-Colo")
 
-
+# IMPORTACION DE LIBRERIAS PARA ANALISIS Y GRAFICO
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
+# CREACION DEL DATAFRAME
 datos = pd.DataFrame({
     "Tarjetas_CC": tarjetas_cc,
     "Tarjetas_PAL": tarjetas_pal,
@@ -212,72 +217,88 @@ datos = pd.DataFrame({
     "Dif_Goles": dif_goles
 })
 
+# MATRIZ DE CORRELACION
 corr = datos.corr()
-
+# MAPA DE CALOR
 sns.heatmap(corr, annot=True, cmap="coolwarm")
-
+# TITULO DE GRAFICO
 plt.title("Mapa de calor de correlaciones")
-
+# MOSTRAR GRAFICO
 plt.show()
 
 
-
+#BOXPLOT DE GOLES
 plt.boxplot([cc_todos, pal_todos],
             labels=["Colo-Colo", "Palestino"])
-
+# TITULO
 plt.title("Distribución de goles")
-
+# NOMBRE DEL EJE Y
 plt.ylabel("Goles")
-
+# MOSTRAR
 plt.show()
 
 
 
-
+# GRAFICO DE DISPERSION
+# TARJETAS VS DIFERENCIA DE GOLES
 plt.scatter(tarjetas_cc, dif_goles)
-
+# TITULO
 plt.title("Tarjetas vs diferencia de goles")
-
+# ETIQUETA EJE X E Y
 plt.xlabel("Tarjetas Colo-Colo")
 plt.ylabel("Diferencia goles")
-
+# MOSTRAR
 plt.show()
 
 
-
+# HISTOGRAMA
+# DIFERENCIA DE GOLES
 plt.hist(dif_goles, bins=10)
-
+# TITULO
 plt.title("Distribución diferencia de goles")
-
+# ETIQUETA EJE X E Y
 plt.xlabel("Diferencia")
 plt.ylabel("Frecuencia")
-
+# MOSTRAR
 plt.show()
 
-#rendimiento modelo predictivo
-from sklearn.matrics import confusion_matrix, ConfusionMatrixDisplay
-pred_gana_test = modelo_gana.predic(X_test)
+# MATRIZ DE CONFUSION
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
+# PREDICCIONES DEL MODELO
+pred_gana_test = modelo_gana.predict(X_test)
+# CREACION DE MATRIZ DE CONFUSION
 cm = confusion_matrix(Ygana_test, pred_gana_test)
-disp = CofusionMatrixDisplay(confusion_matrix=cm, display_labels=["No gana el COLO, Gana el COLO"])
+# VISUALIZACION MATRIZ DE CONFUSION
+disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=["No gana el COLO, Gana el COLO"])
+# DIBUJAR MATRIZ
 disp.plot(cmap = "blues")
+# TITULO
 plt.title("Rendimiento del Modelo: Prediccion de Victorias")
+# MOSTRAR GRAFICO
 plt.show()
 
-#diferencia de goles en la historia
+# EVOLUCION HISTORICA
+# DIFERENCIA DE GOLES
 plt.scatter(anios, dif_goles, alpha=0.6, color='seagreen')
 plt.axhline(0, color='red', linestyles='--')
+# TITULO
 plt.title("Evolucion Historica: Diferencia de Goles a travez de los AÑOs")
+# ETIQUETA EN EJE X E Y
 plt.xlabel("Año del Partido")
 plt.ylabel("Diferencia de Goles (Colo-Colo - Palestina)")
+# MOSTRAR
 plt.show()
 
-#grafico que compara si al colo le va mejor de local o de visita
+# IMPACTO DE LA LOCALIA
 sns.boxplot(x=local_cc, y=dif_goles, palette="set2")
-plt.xtricks(ticks=[0, 1], labels=["visita", "Local"])
-plt.axhilne(0, color='gray', linestyle='--')
+plt.xticks(ticks=[0, 1], labels=["visita", "Local"])
+plt.axhlIne(0, color='gray', linestyle='--')
+# TITULO
 plt.title("Impacto de la Localia en la diferencia de goles")
+# ETIQUETA EJE X E Y
 plt.xlabel("Condicion de Colo-Colo")
 plt.ylabel("Diferencia de Goles")
+# MOSTRAR
 plt.show()
             
 
