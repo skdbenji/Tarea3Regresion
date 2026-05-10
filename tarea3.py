@@ -253,3 +253,33 @@ plt.xlabel("Diferencia")
 plt.ylabel("Frecuencia")
 
 plt.show()
+
+#rendimiento modelo predictivo
+from sklearn.matrics import confusion_matrix, ConfusionMatrixDisplay
+pred_gana_test = modelo_gana.predic(X_test)
+cm = confusion_matrix(Ygana_test, pred_gana_test)
+disp = CofusionMatrixDisplay(confusion_matrix=cm, display_labels=["No gana el COLO, Gana el COLO"])
+disp.plot(cmap = "blues")
+plt.title("Rendimiento del Modelo: Prediccion de Victorias")
+plt.show()
+
+#diferencia de goles en la historia
+plt.scatter(anios, dif_goles, alpha=0.6, color='seagreen')
+plt.axhline(0, color='red', linestyles='--')
+plt.title("Evolucion Historica: Diferencia de Goles a travez de los AÑOs")
+plt.xlabel("Año del Partido")
+plt.ylabel("Diferencia de Goles (Colo-Colo - Palestina)")
+plt.show()
+
+
+sns.boxplot(x=local_cc, y=dif_goles, palette="set2")
+plt.xtricks(ticks=[0, 1], labels=["visita", "Local"])
+plt.axhilne(0, color='gray', linestyle='--')
+plt.title("Impacto de la Localia en la diferencia de goles")
+plt.xlabel("Condicion de Colo-Colo")
+plt.ylabel("Diferencia de Goles")
+plt.show()
+            
+
+           
+                             
