@@ -19,7 +19,7 @@ from sklearn.metrics import (
     ConfusionMatrixDisplay,
     mean_squared_error
 )
-
+from sklearn.tree import DecisionTreeClassifier, plot_tree
 
 # =========================================================
 # IMPORTACION DE DATOS DESDE EL ARCHIVO "datos.py"
@@ -185,7 +185,8 @@ def entrenar_modelos(X, Y_cc, Y_pal, dif_goles, Y_gana):
 
     modelo_gana.fit(X_train, Ygana_train)
 
-    # Aquí podría ir el arbol binario
+    modelo_arbol = DecisionTreeClassifier(max_depth=5, random_state=42)
+    modelo_arbol.fit(X_train, Ygana_train)
 
     # RESULTADOS DEL MODELO (AQUI ESTAN EL R2 Y EL MSE)
     print("\n--- RESULTADOS DEL MODELO ---")
@@ -218,12 +219,16 @@ def entrenar_modelos(X, Y_cc, Y_pal, dif_goles, Y_gana):
         f"Precision victorias CC : "
         f"{modelo_gana.score(X_test, Ygana_test):.3f}"
     )
-
+    print(
+        f"Precision victorias CC (Arbol Binario) : "
+        f"{modelo_arbol.score(X_test, Ygana_test):.3f}"
+    )
     return (
         modelo_cc,
         modelo_pal,
         modelo_dif,
         modelo_gana,
+        modelo_arbol, 
         X_test,
         Ygana_test
     )
@@ -259,7 +264,8 @@ def predecir_nuevo_partido(
     modelo_cc,
     modelo_pal,
     modelo_dif,
-    modelo_gana
+    modelo_gana, 
+    modelo arbol
 ):
 
     # PREDICCION DE NUEVO PARTIDO
@@ -273,6 +279,7 @@ def predecir_nuevo_partido(
     pred_dif = modelo_dif.predict(nuevo_partido)
 
     pred_gana = modelo_gana.predict(nuevo_partido)
+    pred_arbol = modelo_arbol.predict(nuevo_partido) 
 
     # RESULTADOS
     print(f"Goles esperados Colo-Colo : {pred_cc[0]:.2f}")
@@ -287,6 +294,12 @@ def predecir_nuevo_partido(
     else:
         print("Prediccion: No gana Colo-Colo")
 
+     #RESULTADOS ARBOL BINARIO 
+    if pred_arbol[0] == 1:
+        print("Prediccion Arbol: Gana Colo-Colo")
+    else:
+        print("Prediccion Arbol: No gana Colo-Colo")
+
 
 # =========================================================
 # GRAFICOS
@@ -298,6 +311,7 @@ def generar_graficos(
     pal_todos,
     dif_goles,
     modelo_gana,
+    modelo_arbol,
     X_test,
     Ygana_test
 ):
@@ -393,6 +407,36 @@ def generar_graficos(
     # MOSTRAR GRAFICO
     plt.show()
 
+     # -----------------------------------------------------
+
+    # MATRIZ DE CONFUSION - ARBOL BINARIO
+
+    # PREDICCIONES DEL MODELO
+    pred_arbol_test = modelo_arbol.predict(X_test)
+
+    # CREACION DE MATRIZ DE CONFUSION
+    cm_arbol = confusion_matrix(Ygana_test, pred_arbol_test)
+
+    # VISUALIZACION MATRIZ DE CONFUSION
+    disp = ConfusionMatrixDisplay(
+        confusion_matrix=cm_arbol,
+        display_labels=[
+            "No gana CC",
+            "Gana CC"
+        ]
+    )
+
+    # DIBUJAR MATRIZ
+    disp.plot(cmap="Greens")
+
+    # TITULO
+    plt.title(
+        "Rendimiento del Modelo: Prediccion de Victorias (Arbol Binario)"
+    )
+    # MOSTRAR GRAFICO
+    plt.show()
+
+
     # -----------------------------------------------------
 
     # EVOLUCION HISTORICA
@@ -474,6 +518,7 @@ if __name__ == "__main__":
         mod_pal,
         mod_dif,
         mod_gana,
+        mod_arbol,
         X_test,
         Ygana_test
 
@@ -496,7 +541,8 @@ if __name__ == "__main__":
         mod_cc,
         mod_pal,
         mod_dif,
-        mod_gana
+        mod_gana,
+        mod_arbol
     )
 
     # 5. Dibujar los gráficos
@@ -506,6 +552,7 @@ if __name__ == "__main__":
         pal_todos,
         dif_goles,
         mod_gana,
+        mod_arbol,
         X_test,
         Ygana_test
     )
